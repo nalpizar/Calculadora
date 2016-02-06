@@ -1,5 +1,6 @@
 angular.module('todoList',[
     'ngRoute',
+    'persistence',
     'todoList.controllers'
 ]).config(['$routeProvider', function($routeProvider) {
     $routeProvider

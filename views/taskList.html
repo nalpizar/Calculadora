@@ -3,14 +3,14 @@
 <div class="small-12 medium-6 large-5 columns">
     <h4 class="subheader">What needs to be done?</h4><hr>
 
-    <form class="formTaks" name="formTaks">
-        <label for="formTaks--taskName">Task Name</label>
+    <form class="formTask" name="formTask">
+        <label for="formTask--taskName">Task Name</label>
         <input type="text" placeholder="Do Homework" ng-model="name" required>
-        <label for="formTaks--taskDescription">Task Description</label>
+        <label for="formTask--taskDescription">Task Description</label>
         <input type="text" placeholder="ToDo app" ng-model="description">
-        <label for="formTaks--date">Due Date</label>
-        <input type="date" id="formTaks--date" ng-model="dueDate">
-        <button type="submit" id="btnAddTask" class="small button alert" ng-click="addTask()" ng-disabled="formTaks.$invalid">Add Task</button>
+        <label for="formTask--date">Due Date</label>
+        <input type="date" id="formTask--date" ng-model="dueDate">
+        <button type="submit" id="btnAddTask" class="small button alert" ng-click="addTask()" ng-disabled="formTask.$invalid">Add Task</button>
     </form>
 </div>
 
@@ -21,18 +21,18 @@
 
     <ul id="todoList" class="tasks">
         <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true" data-status="{{ item.done }}">
-            <div class="switch tiny todoList__Task--done">
+            <!-- <div class="switch tiny todoList__Task--done">
                 <input ng-click="setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
                 <label class="switch-paddle" for="taskDone-{{ $index }} ">
                         <span class="show-for-sr">Done</span>
                 </label>
-            </div>
+            </div> -->
 
-            <a href="#/description{{ item.id }}" class="todoList__Task--name">{{ item.name }}</a>
+            <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name">{{ item.name }}</a></h2>
 
-            <small class="todoList__Task--date float-right"><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small>
+            <!-- <small class="todoList__Task--date float-right"><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small> -->
 
-            <p>{{ item.description }}</p>
+            <!-- <p>{{ item.description }}</p> -->
         </li>
     </ul>
 

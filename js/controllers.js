@@ -1,29 +1,40 @@
 angular.module ('todoList.controllers')
-    .controller('ToDoCtrl',[
+    .controller('ToDoCtrl', [
         '$scope',
         'PersistenceService',
-
         function($scope, PersistenceService) {
-            $scope.tasksCol = PersistenceService.verify('List') || [];
+            var localStorageKey = "List";
+
+            $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
+            $scope.lastID = 0;
 
             $scope.addTask = function () {
-                if ($scope.name !== undefined && $scope.description !== undefined && $scope.dueDate !== undefined) {
-                    var itemTask = {};
-                    itemTask.name = $scope.name;
-                    itemTask.description = $scope.description;
-                    itemTask.dueDate = $scope.dueDate;
-                    itemTask.done = false;
-                    itemTask.id = $scope.lastID;
+                console.log($scope.lastID);
 
-                    $scope.lastID++;
+                if ($scope.name !== undefined) {
+                    ++$scope.lastID;
 
-                    $scope.tasksCol.push(itemTask);
+                    var taskItem = {
+                        id : $scope.lastID,
+                        name : $scope.name,
+                        description : $scope.description,
+                        dueDate : $scope.dueDate,
+                        done : false
+                    }
 
-                    $scope.name = '';
-                    $scope.description = '';
-                    $scope.dueDate = '';
+                    $scope.tasksCol.push(taskItem);
+
+                    // Reset form fields
+                    $scope.name = "";
+                    $scope.description = "";
+                    $scope.dueDate = "";
                 }
-            };
+            }
+
+            // Syncs
+            $scope.$watch('tasksCol', function(newValue, oldValue) {
+                PersistenceService.save(localStorageKey, newValue);
+            }, true);
 
             $scope.clearDoneTasks = function () {
                 var listContainer = document.querySelector("#todoList");

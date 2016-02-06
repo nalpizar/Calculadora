@@ -1,4 +1,4 @@
-angular.module('persistencia', [
+angular.module('persistence', [
     'persistence.services'
 ]);
 
