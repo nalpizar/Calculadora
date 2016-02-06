@@ -18,6 +18,7 @@
     <h4 class="subheader">Task List</h4><hr>
 
     <p ng-show="tasksCol.length" class="text-right" ><small><strong>{{ tasksCol.length }}</strong> to go!</small></p>
+    <p ng-show="!tasksCol.length" class="text-right"><small><strong>NO</strong> pending tasks</small></p>
 
     <ul id="todoList" class="tasks">
         <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true" data-status="{{ item.done }}">
