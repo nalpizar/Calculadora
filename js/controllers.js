@@ -1,8 +1,9 @@
 angular.module ('todoList.controllers')
     .controller('ToDoCtrl',[
         '$scope',
-        function($scope) {
-            $scope.tasksCol = [];
+        'PersistenceService',
+        function($scope, PersistenceService) {
+            $scope.tasksCol = PersistenceService.verify('List') || [];
 
             $scope.addTask = function () {
                 if ($scope.name !== undefined && $scope.description !== undefined && $scope.dueDate !== undefined) {
