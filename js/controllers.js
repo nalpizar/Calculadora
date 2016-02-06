@@ -54,15 +54,15 @@ angular.module ('todoList.controllers')
                 $scope.tasksCol[taskID].done = document.querySelector("input#taskDone-" + taskID).checked ? true : false;
             };
 
-            $scope.getTaskNumbers = function () {
-                var n = 0;
+            // $scope.getTaskNumbers = function () {
+            //     var n = 0;
 
-                for (var i = 0; i < $scope.tasksCol.length; i++) {
-                    var current = $scope.tasksCol[i];
-                    n += current.done ? 0 : 1;
-                };
+            //     for (var i = 0; i < $scope.tasksCol.length; i++) {
+            //         var current = $scope.tasksCol[i];
+            //         n += current.done ? 0 : 1;
+            //     };
 
-                return n;
-            }
+            //     return n;
+            // }
         }
     ]);
