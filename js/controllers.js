@@ -36,18 +36,19 @@ angular.module ('todoList.controllers')
                 PersistenceService.save(localStorageKey, newValue);
             }, true);
 
-            $scope.clearDoneTasks = function () {
-                var listContainer = document.querySelector("#todoList");
-                var taskItems = listContainer.querySelectorAll("li");
+            // Esta es la función de Eliminar
+            // $scope.clearDoneTasks = function () {
+            //     var listContainer = document.querySelector("#todoList");
+            //     var taskItems = listContainer.querySelectorAll("li");
 
-                for (var i = 0; i < taskItems.length; i++) {
-                    var child = taskItems[i];
+            //     for (var i = 0; i < taskItems.length; i++) {
+            //         var child = taskItems[i];
 
-                    if (child.getAttribute("data-status") === "true") {
-                        listContainer.removeChild(child);
-                    }
-                };
-            };
+            //         if (child.getAttribute("data-status") === "true") {
+            //             listContainer.removeChild(child);
+            //         }
+            //     };
+            // };
 
             $scope.setDone = function (taskID) {
                 $scope.tasksCol[taskID].done = document.querySelector("input#taskDone-" + taskID).checked ? true : false;
@@ -63,4 +64,5 @@ angular.module ('todoList.controllers')
 
                 return n;
             }
-}]);
+        }
+    ]);
