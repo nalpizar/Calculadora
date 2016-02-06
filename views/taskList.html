@@ -3,21 +3,21 @@
     <h4 class="subheader">What needs to be done?</h4><hr>
     <form class="formTaks" name="formTaks">
         <label for="formTaks--taskName">Task Name</label>
-        <input type="text" placeholder="Do Homework" ng-model="task.name" required>
+        <input type="text" placeholder="Do Homework" ng-model="name" required>
         <label for="formTaks--taskDescription">Task Description</label>
-        <input type="text" placeholder="ToDo app" ng-model="task.description" required>
+        <input type="text" placeholder="ToDo app" ng-model="description" required>
         <label for="formTaks--date">Due Date</label>
-        <input type="date" id="formTaks--date" ng-model="task.dueDate" required>
-        <button type="submit" id="btnAddTask" class="small button alert" ng-click="task.addTask()" ng-disabled="formTaks.$invalid">Add Task</button>
+        <input type="date" id="formTaks--date" ng-model="dueDate" required>
+        <button type="submit" id="btnAddTask" class="small button alert" ng-click="addTask()" ng-disabled="formTaks.$invalid">Add Task</button>
     </form>
 </div>
 <div class="small-12 medium-6 large-7 columns">
     <h4 class="subheader">Task List</h4><hr>
-    <p class="text-right" ><small><strong>{{ task.getTaskNumbers(); }}</strong> to go!</small></p>
+    <p class="text-right" ><small><strong>{{ getTaskNumbers(); }}</strong> to go!</small></p>
     <ul id="todoList" class="tasks">
-        <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in task.tasksCol | orderBy:null:true" data-status="{{ item.done }}">
+        <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true" data-status="{{ item.done }}">
             <div class="switch tiny todoList__Task--done">
-                <input ng-click="task.setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
+                <input ng-click="setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
                 <label class="switch-paddle" for="taskDone-{{ $index }} ">
                         <span class="show-for-sr">Done</span>
                 </label>
@@ -27,5 +27,5 @@
             <p>{{ item.description }}</p>
         </li>
     </ul>
-    <button id="btnClearTasks" ng-click="task.clearDoneTasks()" class="small button float-right">Clear Completed Tasks</button>
+    <button id="btnClearTasks" ng-click="clearDoneTasks()" class="small button float-right">Clear Completed Tasks</button>
 </div>
