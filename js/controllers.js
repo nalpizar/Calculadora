@@ -1,26 +1,26 @@
 angular.module ('todoList.controllers')
     .controller('ToDoCtrl',[
-        '$cope',
-        function($cope) {
-            this.tasksCol = [];
+        '$scope',
+        function($scope) {
+            $scope.tasksCol = [];
 
-            this.addTask = function () {
-                if (this.name !== undefined && this.description !== undefined && this.dueDate !== undefined) {
+            $scope.addTask = function () {
+                if ($scope.name !== undefined && $scope.description !== undefined && $scope.dueDate !== undefined) {
                     var itemTask = {};
-                    itemTask.name = this.name;
-                    itemTask.description = this.description;
-                    itemTask.dueDate = this.dueDate;
+                    itemTask.name = $scope.name;
+                    itemTask.description = $scope.description;
+                    itemTask.dueDate = $scope.dueDate;
                     itemTask.done = false;
 
-                    this.tasksCol.push(itemTask);
+                    $scope.tasksCol.push(itemTask);
 
-                    this.name = '';
-                    this.description = '';
-                    this.dueDate = '';
+                    $scope.name = '';
+                    $scope.description = '';
+                    $scope.dueDate = '';
                 }
             };
 
-            this.clearDoneTasks = function () {
+            $scope.clearDoneTasks = function () {
                 var listContainer = document.querySelector("#todoList");
                 var taskItems = listContainer.querySelectorAll("li");
 
@@ -33,15 +33,15 @@ angular.module ('todoList.controllers')
                 };
             };
 
-            this.setDone = function (taskID) {
-                this.tasksCol[taskID].done = document.querySelector("input#taskDone-" + taskID).checked ? true : false;
+            $scope.setDone = function (taskID) {
+                $scope.tasksCol[taskID].done = document.querySelector("input#taskDone-" + taskID).checked ? true : false;
             };
 
-            this.getTaskNumbers = function () {
+            $scope.getTaskNumbers = function () {
                 var n = 0;
 
-                for (var i = 0; i < this.tasksCol.length; i++) {
-                    var current = this.tasksCol[i];
+                for (var i = 0; i < $scope.tasksCol.length; i++) {
+                    var current = $scope.tasksCol[i];
                     n += current.done ? 0 : 1;
                 };
 
