@@ -3,6 +3,7 @@ angular.module ('todoList.controllers')
         '$scope',
         function($scope) {
             $scope.tasksCol = [];
+            $scope.lastID = 0;
 
             $scope.addTask = function () {
                 if ($scope.name !== undefined && $scope.description !== undefined && $scope.dueDate !== undefined) {
@@ -11,6 +12,9 @@ angular.module ('todoList.controllers')
                     itemTask.description = $scope.description;
                     itemTask.dueDate = $scope.dueDate;
                     itemTask.done = false;
+                    itemTask.id = $scope.lastID;
+
+                    $scope.lastID++;
 
                     $scope.tasksCol.push(itemTask);
 

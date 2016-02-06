@@ -7,7 +7,7 @@ angular.module('todoList',[
             templateUrl: 'views/taskList.html',
             controller : 'ToDoCtrl'
         })
-        .when('/description', {
+        .when('/description/:id', {
             templateUrl: 'views/taskDescription.html'
         })
         .otherwise({redirectTo: '/'});
