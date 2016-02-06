@@ -4,9 +4,9 @@
     <h4 class="subheader">What needs to be done?</h4><hr>
 
     <form class="formTask" name="formTask">
-        <label for="formTask--taskName">Task Name</label>
-        <input type="text" placeholder="Do Homework" ng-model="name" required>
-        <label for="formTask--taskDescription">Task Description</label>
+        <label for="formTask--taskName">Task Name</label>    
+        <input type="text" placeholder="Do Homework" ng-model="name" name="taskName" required>
+        <small class="error" ng-show="formTask.taskName.$touched && formTask.taskName.$invalid">The name is required.</small>
         <input type="text" placeholder="ToDo app" ng-model="description">
         <label for="formTask--date">Due Date</label>
         <input type="date" id="formTask--date" ng-model="dueDate">
