@@ -9,9 +9,11 @@ angular.module('todoList',[
             controller : 'ToDoCtrl'
         })
         .when('/description/:id', {
-            templateUrl: 'views/taskDescription.html'
+            templateUrl: 'views/taskDescription.html',
+            controller : 'TaskCtrl'      
         })
         .otherwise({redirectTo: '/'});
 }]);
 
 angular.module('todoList.controllers', []);
+
