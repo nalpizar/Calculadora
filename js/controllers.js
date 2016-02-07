@@ -2,7 +2,6 @@ angular.module ('todoList.controllers')
     .controller('ToDoCtrl', [
         '$scope',
         'PersistenceService',
-        'TaskCtrl',
         function($scope, PersistenceService) {
             var localStorageKey = "List";
 
@@ -66,51 +65,39 @@ angular.module ('todoList.controllers')
             //     return n;
             // }
         }
-    ]);
+    ])
 
-  angular.module ('description.controllers',[])
-    .controller('TaskCtrl', [
+
+
+    .controller('TaskCtrl',[
         '$scope',
-        '$routeParams',
         'PersistenceService',
-        function($scope, $routeParams,PersistenceService) {
-            var localStorageKey = "List";
+        '$routeParams',
 
-            $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
+        function($scope,PersistenceService,$routeParams){
+        var localStorageKey ="List";
+            $scope.tasksCol=PersistenceService.verify(localStorageKey) || [];
 
-      
-         
-            $scope.init = function () {               
+            $scope.item= returnItem($scope.tasksCol);
 
-          /*          var taskItem = {
-                       id:$routeParams.id
-                       description : $scope.description,
-                       dueDate : $scope.dueDate,
-  
-                    };*/
-$scope.tarea();
+            function returnItem(object){
 
-};
+               var task;
 
 
-
-$scope.tarea= function(){
-    var id = $routeParams.id;
-    var tarea={};
-    for (i=0;i<$scope.tasksCol.length;i++){
-        if (id==$scope.tasksCol[i].id) {
-      tarea=$scope.tasksCol[i];
+                for(i=0;i<object.length ; i++){
+                    if (object[i].id=$routeParams.id){
+                        task=object[i];
+                    }
 
 
-        };
-    
+                };
 
-    }
-console.log(tarea);
- return tarea;   
-}
+        return task
 
-$scope.init();
+            }
 
-}]);
+  }
 
+
+]);
