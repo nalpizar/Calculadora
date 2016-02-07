@@ -34,6 +34,7 @@ angular.module ('todoList.controllers')
         '$routeParams',
         function($scope,PersistenceService,$routeParams){
             var localStorageKey ="List";
+            var currentID=$routeParams.id;
             $scope.tasksCol=PersistenceService.verify(localStorageKey) || [];
 
             $scope.item= returnItem($scope.tasksCol);
@@ -44,13 +45,27 @@ angular.module ('todoList.controllers')
 
 
                 for(i=0;i<object.length ; i++){
-                    if (object[i].id == $routeParams.id){
+                    if (object[i].id == currentID){
                         task=object[i];
                     }
                 };
 
                 return task
             }
+        $scope.DeleteItem= function(){
+            currentID-=1;
+            $scope.tasksCol.splice(currentID, 1);
+           // console.log($scope.item,currentID);
+           window.location='/index.html';   
+         
+
+     }
+
+
         }
+
+
+
+
+
     ])
-;
