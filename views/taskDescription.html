@@ -5,18 +5,7 @@
 
     <p ng-show="item.dueDate"><small class="todoList__Task--date "><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small></p>
 
- <!--   <div class="switch tiny todoList__Task--done">
-         <input ng-click="setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
-         <label class="switch-paddle" for="taskDone-{{ $index }} ">
-         <span class="show-for-sr">Done</span>
-         </label>
-    </div>
+    <button class="button small warning" ng-click="DeleteItem()">Delete</button>
 
--->
-
-<!--<div class="switch tiny todoList__Task--done">-->
-         <button ng-click="DeleteItem()">Delete</button>
-  
- <!--   </div>-->
     <a href="#/" class="small button float-right">Return Home</button>
 </div>

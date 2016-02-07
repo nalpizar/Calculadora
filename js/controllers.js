@@ -40,9 +40,7 @@ angular.module ('todoList.controllers')
             $scope.item= returnItem($scope.tasksCol);
 
             function returnItem(object){
-
                var task;
-
 
                 for(i=0;i<object.length ; i++){
                     if (object[i].id == currentID){
@@ -52,20 +50,13 @@ angular.module ('todoList.controllers')
 
                 return task
             }
-        $scope.DeleteItem= function(){
-            currentID-=1;
-            $scope.tasksCol.splice(currentID, 1);
-           // console.log($scope.item,currentID);
-           window.location='/index.html';   
-         
 
-     }
-
-
+            $scope.DeleteItem= function(){
+                currentID-=1;
+                $scope.tasksCol = $scope.tasksCol.splice(currentID, 1);
+                PersistenceService.save(localStorageKey, $scope.tasksCol);
+                window.location='/index.html';
+            }
         }
-
-
-
-
-
     ])
+;
