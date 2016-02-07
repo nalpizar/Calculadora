@@ -40,10 +40,6 @@ hr {
     text-decoration: line-through;
 }
 
-#todoList .todoList__Task:last-child {
-    margin-bottom: 0;
-}
-
 .todoList__Task--done {
     position: absolute;
     bottom: 8px;
