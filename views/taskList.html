@@ -4,7 +4,7 @@
     <h4 class="subheader">What needs to be done?</h4><hr>
 
     <form class="formTask" name="formTask">
-        <label for="formTask--taskName">Task Title:</label>    
+        <label for="formTask--taskName">Task Title:</label>
         <input type="text" placeholder="Do Homework" ng-model="name" name="taskName" required>
         <small class="error" ng-show="formTask.taskName.$touched && formTask.taskName.$invalid">The name is required.</small>
         <textarea type="text" placeholder="Task Description" ng-model="description" rows="4" cols="50"></textarea>
@@ -20,7 +20,7 @@
     <form action="" id="frmBuscar" class="col-xs-2">
         <div class="pull-right">
             <input type="text" id="txtBuscar" class="txt" placeholder="Search Task" ng-model="taskFilter">
-        </div>  
+        </div>
     </form>
 
     <p ng-show="tasksCol.length" class="text-right" ><small><strong>{{ tasksCol.length }}</strong> to go!</small></p>
@@ -28,20 +28,7 @@
 
     <ul id="todoList" class="tasks">
         <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true | filter:taskFilter" data-status="{{ item.done }}">
-            <!-- <div class="switch tiny todoList__Task--done">
-                <input ng-click="setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
-                <label class="switch-paddle" for="taskDone-{{ $index }} ">
-                        <span class="show-for-sr">Done</span>
-                </label>
-            </div> -->
-
-            <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name">{{ item.name }}</a></h2>
-
-            <!-- <small class="todoList__Task--date float-right"><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small> -->
-
-            <!-- <p>{{ item.description }}</p> -->
+            <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name"><span class="fi-pencil"></span> {{ item.name }}</a></h2>
         </li>
     </ul>
-
-    <!-- <button id="btnClearTasks" ng-click="clearDoneTasks()" class="small button float-right">Clear Completed Tasks</button> -->
 </div>
