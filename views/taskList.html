@@ -17,11 +17,17 @@
 <div class="small-12 medium-6 large-7 columns">
     <h4 class="subheader">Task List</h4><hr>
 
+    <form action="" id="frmBuscar" class="col-xs-2">
+        <div class="pull-right">
+            <input type="text" id="txtBuscar" class="txt" placeholder="Search Task" ng-model="taskFilter">
+        </div>  
+    </form>
+
     <p ng-show="tasksCol.length" class="text-right" ><small><strong>{{ tasksCol.length }}</strong> to go!</small></p>
     <p ng-show="!tasksCol.length" class="text-right"><small><strong>NO</strong> pending tasks</small></p>
 
     <ul id="todoList" class="tasks">
-        <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true" data-status="{{ item.done }}">
+        <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true | filter:taskFilter" data-status="{{ item.done }}">
             <!-- <div class="switch tiny todoList__Task--done">
                 <input ng-click="setDone($index)" class="switch-input" id="taskDone-{{ $index }}" type="checkbox">
                 <label class="switch-paddle" for="taskDone-{{ $index }} ">
