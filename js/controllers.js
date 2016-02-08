@@ -90,8 +90,7 @@ angular.module ('todoList.controllers')
                 target = i;
               }
             }
-
-            console.log(target);
+            
             $scope.tasksCol.splice(target, 1);
           }
 
