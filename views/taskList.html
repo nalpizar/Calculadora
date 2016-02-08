@@ -3,7 +3,7 @@
 <div class="small-12 medium-6 large-5 columns">
     <h4 class="subheader">What needs to be done?</h4><hr>
 
-    <form class="formTask" name="formTask">
+    <form class="formTask" name="taskForm">
         <label for="formTask--taskName">Task Title:</label>
         <input type="text" placeholder="Do Homework" ng-model="name" name="taskName" required>
         <small class="error" ng-show="formTask.taskName.$touched && formTask.taskName.$invalid">The name is required.</small>

@@ -69,15 +69,15 @@ hr {
 }
 
 .error {
-    display: block;
-    font-size: 0.66667rem;
-    font-style: italic;
-    font-weight: normal;
-    margin-bottom: 0.88889rem;
-    margin-top: -1px;
-    padding: 0.33333rem 0.5rem 0.5rem;
-    background: #f04124;
-    color: #FFFFFF;
+  display: block;
+  font-size: 0.66667rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-bottom: 0.88889rem;
+  margin-top: -1px;
+  padding: 0.33333rem 0.5rem 0.5rem;
+  background: #f04124;
+  color: #FFFFFF;
 }
 
 #todoList a {
