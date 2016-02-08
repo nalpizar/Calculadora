@@ -1,11 +1,20 @@
-<div class="small-12 columns">
-    <h4 class="subheader descriptionSubheader">{{ item.name }}</h4><hr>
+<div class="small-12 columns todoList__Task--Details" data-done="{{ item.done }}">
 
-    <p ng-show="item.description">{{ item.description }}</p>
+  <div class="header">
+    <div class="switch tiny todoList__Task--done">
+      <input ng-click="setDone()" ng-checked="{{ item.done }}" class="switch-input" id="taskDone-{{ item.id }}" type="checkbox">
+      <label class="switch-paddle" for="taskDone-{{ item.id }} ">
+        <span class="show-for-sr">Mark as Done</span>
+      </label>
+    </div>
+    <h4 class="subheader title descriptionSubheader"><span ng-show="item.done" class="fi-check"></span> {{ item.name }}</h4><hr>
+  </div>
 
-    <p ng-show="item.dueDate"><small class="todoList__Task--date "><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small></p>
+  <p class="todoList__Task--description" ng-show="item.description">{{ item.description }}</p>
 
-    <button class="button small warning" ng-click="DeleteItem()">Delete</button>
+  <p class="todoList__Task--description" ng-show="item.dueDate"><small><strong><span class="fi-calendar small"></span> Due Date</strong>: {{ item.dueDate | date: "MM/dd/yyyy"}}</small></p>
 
-    <a href="#/" class="small button float-right">Return Home</button>
+  <button class="button small alert" ng-click="deleteItem()">Delete Item</button>
+
+  <a href="#/" class="small button float-right">Return Home</a>
 </div>

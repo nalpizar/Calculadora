@@ -6,7 +6,7 @@ angular.module ('todoList.controllers')
             var localStorageKey = "List";
 
             $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
-            $scope.lastID = 0;
+            $scope.lastID = PersistenceService.verify("taskLastID") || 0;
 
             $scope.addTask = function () {
                 $scope.lastID++;
@@ -22,41 +22,81 @@ angular.module ('todoList.controllers')
                 $scope.tasksCol.push(taskItem);
             }
 
+            $scope.countPending = function () {
+              var counter = 0;
+
+              for(i = 0; i < $scope.tasksCol.length; i++){
+                if (!$scope.tasksCol[i].done) {
+                  counter++;
+                }
+              };
+
+              return counter;
+            }
+
             $scope.$watch('tasksCol', function(newValue, oldValue) {
                 PersistenceService.save(localStorageKey, newValue);
+            }, true);
+
+            $scope.$watch('lastID', function(newValue, oldValue) {
+                PersistenceService.save("taskLastID", newValue);
             }, true);
         }
     ])
 
     .controller('TaskCtrl',[
-        '$scope',
-        'PersistenceService',
-        '$routeParams',
-        function($scope,PersistenceService,$routeParams){
-            var localStorageKey ="List";
-            var currentID=$routeParams.id;
-            $scope.tasksCol=PersistenceService.verify(localStorageKey) || [];
+      '$scope',
+      'PersistenceService',
+      '$routeParams',
+      '$location',
+      function($scope, PersistenceService, $routeParams, $location) {
+        var localStorageKey = "List";
+        var currentID = $routeParams.id;
 
-            $scope.item= returnItem($scope.tasksCol);
+        $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
+        $scope.lastID = PersistenceService.verify("taskLastID");
 
-            function returnItem(object){
-               var task;
+        $scope.item = returnItem($scope.tasksCol);
 
-                for(i=0;i<object.length ; i++){
-                    if (object[i].id == currentID){
-                        task=object[i];
-                    }
-                };
+        $scope.$watch('tasksCol', function(newValue, oldValue) {
+            PersistenceService.save(localStorageKey, newValue);
+        }, true);
 
-                return task
+        $scope.$watch('lastID', function(newValue, oldValue) {
+            PersistenceService.save("taskLastID", newValue);
+        }, true);
+
+        function returnItem (object) {
+          var task;
+
+          for(i = 0; i < object.length; i++){
+            if (object[i].id == currentID){
+              task=object[i];
             }
+          };
 
-            $scope.DeleteItem= function(){
-                currentID-=1;
-                $scope.tasksCol = $scope.tasksCol.splice(currentID, 1);
-                PersistenceService.save(localStorageKey, $scope.tasksCol);
-                window.location='/index.html';
-            }
-        }
+          return task
+        };
+
+        $scope.deleteItem = function () {
+          if ($scope.tasksCol.length == 1) {
+            $scope.tasksCol = [];
+          } else {
+            $scope.tasksCol.splice(currentID - 1, 1);
+          }
+
+          $scope.lastID--;
+
+          if ($scope.lastID < 0) {
+            $scope.lastID = 0;
+          }
+
+          $location.path('/index.html');
+        };
+
+        $scope.setDone = function () {
+          $scope.item.done = document.querySelector("input#taskDone-" + currentID).checked ? true : false;
+        };
+      }
     ])
 ;

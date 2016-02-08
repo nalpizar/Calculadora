@@ -32,18 +32,27 @@ hr {
 }
 
 .todoList__Task[data-status="true"] {
-    background: #e1faea;
+  background: #e1faea;
 }
 
-.todoList__Task[data-status="true"] .todoList__Task--description,
-.todoList__Task[data-status="true"] .todoList__Task--date {
+.todoList__Task[data-status="true"] .todoList__Task--name {
+  text-decoration: line-through;
+}
+
+.todoList__Task--Details[data-done="true"] .todoList__Task--description,
+.todoList__Task--Details[data-done="true"] .title,
+.todoList__Task--Details[data-done="true"] .todoList__Task--date {
     text-decoration: line-through;
 }
 
+.todoList__Task--Details .header {
+  position: relative;
+}
+
 .todoList__Task--done {
-    position: absolute;
-    bottom: 8px;
-    right: 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .todoList__Task--date {

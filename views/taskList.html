@@ -23,11 +23,11 @@
         </div>
     </form>
 
-    <p ng-show="tasksCol.length" class="text-right" ><small><strong>{{ tasksCol.length }}</strong> to go!</small></p>
-    <p ng-show="!tasksCol.length" class="text-right"><small><strong>NO</strong> pending tasks</small></p>
+    <p ng-show="tasksCol.length" class="text-center" ><small><strong>{{ countPending(); }}</strong> to go!</small></p>
+    <p ng-show="!tasksCol.length" class="text-center"><small><strong>NO</strong> pending tasks</small></p>
 
     <ul id="todoList" class="tasks">
-        <li id="todoList__Task-{{$index}}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true | filter:taskFilter" data-status="{{ item.done }}">
+        <li id="todoList__Task-{{ item.id }}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true | filter:taskFilter" data-status="{{ item.done }}">
             <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name"><span class="fi-pencil"></span> {{ item.name }}</a></h2>
         </li>
     </ul>
