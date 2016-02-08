@@ -79,10 +79,20 @@ angular.module ('todoList.controllers')
         };
 
         $scope.deleteItem = function () {
+
           if ($scope.tasksCol.length == 1) {
             $scope.tasksCol = [];
           } else {
-            $scope.tasksCol.splice(currentID - 1, 1);
+            var target;
+
+            for (var i = 0; i < $scope.tasksCol.length; i++) {
+              if ($scope.tasksCol[i].id == currentID) {
+                target = i;
+              }
+            }
+
+            console.log(target);
+            $scope.tasksCol.splice(target, 1);
           }
 
           $scope.lastID--;

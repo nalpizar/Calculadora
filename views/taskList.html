@@ -3,14 +3,14 @@
 <div class="small-12 medium-6 large-5 columns">
     <h4 class="subheader">What needs to be done?</h4><hr>
 
-    <form class="formTask" name="taskForm">
-        <label for="formTask--taskName">Task Title:</label>
-        <input type="text" placeholder="Do Homework" ng-model="name" name="taskName" required>
-        <small class="error" ng-show="formTask.taskName.$touched && formTask.taskName.$invalid">The name is required.</small>
+    <form class="taskForm" name="taskForm">
+        <label for="taskForm--taskName">Task Title:</label>
+        <input type="text" placeholder="Do Homework" ng-model="name" required>
+        <small class="error" ng-show="taskForm.taskName.$touched && taskForm.taskName.$invalid">The name is required.</small>
         <textarea type="text" placeholder="Task Description" ng-model="description" rows="4" cols="50"></textarea>
-        <label for="formTask--date">Due Date:</label>
-        <input type="date" id="formTask--date" ng-model="dueDate">
-        <button type="submit" id="btnAddTask" class="small button alert" ng-click="addTask()" ng-disabled="formTask.$invalid">Add Task</button>
+        <label for="taskForm--date">Due Date:</label>
+        <input type="date" id="taskForm--date" ng-model="dueDate">
+        <button type="submit" id="btnAddTask" class="small button alert" ng-click="addTask()" ng-disabled="taskForm.$invalid">Add Task</button>
     </form>
 </div>
 
