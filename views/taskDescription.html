@@ -2,12 +2,12 @@
 
   <div class="header">
     <div class="switch tiny todoList__Task--done">
-      <input ng-click="setDone()" ng-checked="{{ item.done }}" class="switch-input" id="taskDone-{{ item.id }}" type="checkbox">
+      <input ng-model="item.done" class="switch-input" id="taskDone-{{ item.id }}" type="checkbox">
       <label class="switch-paddle" for="taskDone-{{ item.id }} ">
         <span class="show-for-sr">Mark as Done</span>
       </label>
     </div>
-    <h4 class="subheader title descriptionSubheader"><span ng-show="item.done" class="fi-check"></span> {{ item.name }}</h4><hr>
+    <h4 class="subheader title descriptionSubheader" ><span ng-show="item.done" class="fi-check"></span> {{ item.name }}</h4><hr>
   </div>
 
   <p class="todoList__Task--description" ng-show="item.description">{{ item.description }}</p>

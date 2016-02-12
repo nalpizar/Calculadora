@@ -54,9 +54,6 @@ angular.module ('todoList.controllers')
           $location.path('/index.html');
         };
 
-        $scope.setDone = function () {
-          $scope.item.done = document.querySelector("input#taskDone-" + currentID).checked ? true : false;
-        };
       }
     ])
 ;
