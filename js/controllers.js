@@ -9,17 +9,25 @@ angular.module ('todoList.controllers')
             $scope.lastID = PersistenceService.verify("taskLastID") || 0;
 
             $scope.addTask = function () {
-                $scope.lastID++;
+              $scope.lastID++;
 
-                var taskItem = {
-                    id : $scope.lastID,
-                    name : $scope.name,
-                    description : $scope.description,
-                    dueDate : $scope.dueDate,
-                    done : false
-                }
+              var taskItem = {
+                  id : $scope.lastID,
+                  name : $scope.name,
+                  description : $scope.description,
+                  dueDate : $scope.dueDate,
+                  done : false
+              }
 
-                $scope.tasksCol.push(taskItem);
+              $scope.tasksCol.push(taskItem);
+
+              if ($scope.taskForm) {
+                $scope.taskForm.$setPristine();
+                $scope.taskForm.$setUntouched();
+                $scope.name = "";
+                $scope.description = "";
+                $scope.dueDate = "";
+              }
             }
 
             $scope.countPending = function () {
@@ -69,8 +77,8 @@ angular.module ('todoList.controllers')
         function returnItem (object) {
           var task;
 
-          for(i = 0; i < object.length; i++){
-            if (object[i].id == currentID){
+          for(i = 0; i < object.length; i++) {
+            if (object[i].id == currentID) {
               task=object[i];
             }
           };
@@ -82,6 +90,7 @@ angular.module ('todoList.controllers')
 
           if ($scope.tasksCol.length == 1) {
             $scope.tasksCol = [];
+            $scope.lastID = 0;
           } else {
             var target;
 
@@ -90,14 +99,8 @@ angular.module ('todoList.controllers')
                 target = i;
               }
             }
-            
+
             $scope.tasksCol.splice(target, 1);
-          }
-
-          $scope.lastID--;
-
-          if ($scope.lastID < 0) {
-            $scope.lastID = 0;
           }
 
           $location.path('/index.html');

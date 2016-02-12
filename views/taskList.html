@@ -5,7 +5,7 @@
 
     <form class="taskForm" name="taskForm">
         <label for="taskForm--taskName">Task Title:</label>
-        <input type="text" placeholder="Do Homework" ng-model="name" required>
+        <input type="text" placeholder="Do Homework" name="taskName" ng-model="name" required>
         <small class="error" ng-show="taskForm.taskName.$touched && taskForm.taskName.$invalid">The name is required.</small>
         <textarea type="text" placeholder="Task Description" ng-model="description" rows="4" cols="50"></textarea>
         <label for="taskForm--date">Due Date:</label>
