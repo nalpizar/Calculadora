@@ -16,19 +16,19 @@
 
 <div class="small-12 medium-6 large-7 columns">
     <h4 class="subheader">Task List</h4><hr>
+    
+        <form action="" id="frmBuscar" class="col-xs-2">
+            <div class="pull-right">
+                <input type="text" id="txtBuscar" class="txt" placeholder="Search Task" ng-model='taskFilter'>
+            </div>
+        </form>
 
-    <form action="" id="frmBuscar" class="col-xs-2">
-        <div class="pull-right">
-            <input type="text" id="txtBuscar" class="txt" placeholder="Search Task" ng-model="taskFilter">
-        </div>
-    </form>
+        <p ng-show="filtered.length" class="text-center" ><small><strong>{{filtered.length}}</strong> to go!</small></p>
+        <p ng-show="!filtered.length" class="text-center"><small><strong>NO</strong> pending tasks</small></p>
 
-    <p ng-show="tasksCol.length" class="text-center" ><small><strong>{{ countPending(); }}</strong> to go!</small></p>
-    <p ng-show="!tasksCol.length" class="text-center"><small><strong>NO</strong> pending tasks</small></p>
-
-    <ul id="todoList" class="tasks">
-        <li id="todoList__Task-{{ item.id }}" class="todoList__Task" ng-repeat="item in tasksCol | orderBy:null:true | filter:taskFilter" data-status="{{ item.done }}">
-            <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name"><span class="fi-pencil"></span> {{ item.name }}</a></h2>
-        </li>
-    </ul>
+        <ul id="todoList" class="tasks">
+            <li id="todoList__Task-{{ item.id }}" class="todoList__Task" ng-repeat="item in filtered = (tasksCol | orderBy:null:true | filter:taskFilter)" data-status="{{ item.done }}">
+                <h2><a href="#/description/{{ item.id }}" class="todoList__Task--name"><span class="fi-pencil"></span> {{ item.name }}</a></h2>
+            </li>
+        </ul>
 </div>

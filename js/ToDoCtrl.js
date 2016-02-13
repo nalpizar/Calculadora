@@ -30,17 +30,17 @@ angular.module ('todoList.controllers')
               }
             }
 
-            $scope.countPending = function () {
-              var counter = 0;
+            // $scope.countPending = function () {
+            //   var counter = 0;
 
-              for(i = 0; i < $scope.tasksCol.length; i++){
-                if (!$scope.tasksCol[i].done) {
-                  counter++;
-                }
-              };
+            //   for(i = 0; i < $scope.tasksCol.length; i++){
+            //     if (!$scope.tasksCol[i].done) {
+            //       counter++;
+            //     }
+            //   };
 
-              return counter;
-            }
+            //   return counter;
+            // }
 
             $scope.$watch('tasksCol', function(newValue, oldValue) {
                 PersistenceService.save(localStorageKey, newValue);

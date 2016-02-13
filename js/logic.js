@@ -17,3 +17,8 @@ angular.module('todoList',[
 
 angular.module('todoList.controllers', []);
 
+var myApp = angular.module('myApp',[]);
+
+    function MyCtrl($scope) {
+        $scope.items = ['foo', 'bar', 'foobar'];
+}
