@@ -1,12 +1,14 @@
 angular.module ('todoList.controllers')
 .controller('ToDoCtrl', [
         '$scope',
+        '$routeParams',
         'PersistenceService',
-        function($scope, PersistenceService) {
+        function($scope, $routeParams, PersistenceService) {
             var localStorageKey = "List";
 
             $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
             $scope.lastID = PersistenceService.verify("taskLastID") || 0;
+            $scope.notFound = false;
 
             $scope.addTask = function () {
               $scope.lastID++;
@@ -30,17 +32,9 @@ angular.module ('todoList.controllers')
               }
             }
 
-            // $scope.countPending = function () {
-            //   var counter = 0;
-
-            //   for(i = 0; i < $scope.tasksCol.length; i++){
-            //     if (!$scope.tasksCol[i].done) {
-            //       counter++;
-            //     }
-            //   };
-
-            //   return counter;
-            // }
+            if ($routeParams.error != "" && $routeParams.error == "error") {
+              $scope.notFound = true;
+            }
 
             $scope.$watch('tasksCol', function(newValue, oldValue) {
                 PersistenceService.save(localStorageKey, newValue);

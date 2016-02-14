@@ -2,55 +2,50 @@ angular.module('persistence.services')
 
 .service ('PersistenceService',
 
-	function($routeParams) {
+    function($routeParams) {
 
-		var saveKey = function (key, object) {
-			localStorage.setItem(key, angular.toJson(object)); 
-		}
-
-		var verifyKey = function(key) {
-        	return angular.fromJson(localStorage.getItem(key));
+        var saveKey = function (key, object) {
+            localStorage.setItem(key, angular.toJson(object)); 
         };
 
-		var removeKey = function(key) {
-			localStorage.removeItem(key);
-		};
+        var verifyKey = function(key) {
+            return angular.fromJson(localStorage.getItem(key));
+        };
 
-		
+        var removeKey = function(key) {
+            localStorage.removeItem(key);
+        };
 
-        var returnItem= function(verifyKey){
-        	var currentID=$routeParams.id
-            var task;
+        var getItem = function(tasksCollection, targetID) {
+            var item;
 
-            for(i=0;i<verifyKey.length;i++){
-            	if (verifyKey[i].id== currentID){
-            		task=verifyKey[i]
-            	}
-           return task;
+            for (var i = 0; i < tasksCollection.length; i++) {
+                if (tasksCollection[i].id == targetID) {
+                    item = tasksCollection[i];
+                }
+            };
 
-            }
+            return item;
+        };
 
-        };//returnItem
+        var getItemIndex = function (tasksCollection, targetID) {
+            var index;
 
+            for (var i = 0; i < tasksCollection.length; i++) {
+                if (tasksCollection[i].id == targetID) {
+                    index = i;
+                }
+            };
 
+            return index;
+        };
 
-      
-
-
-
-
-		return {
-			save: saveKey,
-			verify: verifyKey,
-			remove: removeKey,
-			taskId:returnItem
-		}
-	}
-
-
-        
-
-
-
-
+        return {
+            save         : saveKey,
+            verify       : verifyKey,
+            remove       : removeKey,
+            getItem      : getItem,
+            getItemIndex : getItemIndex
+        };
+    }
 );

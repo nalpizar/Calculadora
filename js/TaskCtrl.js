@@ -12,9 +12,11 @@ angular.module ('todoList.controllers')
         $scope.tasksCol = PersistenceService.verify(localStorageKey) || [];
         $scope.lastID = PersistenceService.verify("taskLastID");
 
-        $scope.item = PersistenceService.taskId($scope.tasksCol);
+        $scope.item = PersistenceService.getItem($scope.tasksCol, currentID);
 
-     //   $scope.item = returnItem($scope.tasksCol);
+        if ($scope.item === undefined) {
+          $location.path("/error");
+        }
 
         $scope.$watch('tasksCol', function(newValue, oldValue) {
             PersistenceService.save(localStorageKey, newValue);
@@ -24,37 +26,17 @@ angular.module ('todoList.controllers')
             PersistenceService.save("taskLastID", newValue);
         }, true);
 
- /*    function returnItem (object) {
-          var task;
-
-          for(i = 0; i < object.length; i++) {
-            if (object[i].id == currentID) {
-              task=object[i];
-            }
-          };
-
-          return task
-        };*/
-
         $scope.deleteItem = function () {
 
           if ($scope.tasksCol.length == 1) {
             $scope.tasksCol = [];
             $scope.lastID = 0;
           } else {
-            var target;
-
-            for (var i = 0; i < $scope.tasksCol.length; i++) {
-              if ($scope.tasksCol[i].id == currentID) {
-                target = i;
-              }
-            }
-
+            var target = PersistenceService.getItemIndex($scope.tasksCol, currentID);
             $scope.tasksCol.splice(target, 1);
-            
           }
 
-          $location.path('/index.html');
+          $location.path('/');
         };
 
       }
