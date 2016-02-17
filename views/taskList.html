@@ -21,11 +21,7 @@
 <div class="small-12 medium-6 large-7 columns">
     <h4 class="subheader">Task List</h4><hr>
 
-        <form action="" id="frmBuscar" class="col-xs-2">
-            <div class="pull-right">
-                <input type="text" id="txtBuscar" ng-disabled="!tasksCol.length" class="txt" placeholder="Search Task" ng-model='taskFilter'>
-            </div>
-        </form>
+        <input type="text" id="txtBuscar" ng-disabled="!tasksCol.length" class="txt" placeholder="Search Task" ng-model='taskFilter'>
 
         <p ng-show="filtered.length" class="text-center" ><small><strong>{{filtered.length}}</strong> to go!</small></p>
         <p ng-show="!filtered.length" class="text-center"><small><strong>NO</strong> pending tasks</small></p>
