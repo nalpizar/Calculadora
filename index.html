@@ -2,26 +2,49 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>TODO App ~ Built with AngularJS</title>
-        <link rel="stylesheet" href="css/foundation.min.css">
+        <title>Calc</title>
         <link rel="stylesheet" href="css/styles.css">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div ng-app="todoList">
-            <div class="row" ng-view></div>
+
+        <div id="calculator" ng-app="calcApp" ng-controller="calcCtrl">
+            <div class="top">
+                <span class="clear">C</span>
+
+                <div class="screen">
+                    <span>{{pendingValue}}</span>
+                </div>
+
+            </div>
+
+            <div class="keys">
+                <span ng-click='getVal(7)'>7</span>
+                <span ng-click='getVal(8)'>8</span>
+                <span ng-click='getVal(9)'>9</span>
+                <span ng-click='sum()' class="operator">+</span>
+                <span ng-click='getVal(4)'>4</span>
+                <span ng-click='getVal(5)'>5</span>
+                <span ng-click='getVal(6)'>6</span>
+                <span class="operator">-</span>
+                <span ng-click='getVal(1)'>1</span>
+                <span ng-click='getVal(2)'>2</span>
+                <span ng-click='getVal(3)'>3</span>
+                <span class="operator">÷</span>
+                <span ng-click='getVal(0)'>0</span>
+                <span>.</span>
+                <span class="eval">=</span>
+                <span class="operator">x</span>
+            </div>
         </div>
 
         <script src="js/angular.min.js"></script>
-        <script src="js/angular-route.min.js"></script>
-        <script src="js/logic.js"></script>
-        <!-- LocalStorage Service -->
-        <script src="js/persistence/logic.js"></script>
-        <script src="js/persistence/persistenceService.js"></script>
+        <!-- <script src="js/angular-route.min.js"></script> -->
+        <!-- <script src="js/logic.js"></script> -->
+        <!-- Service -->
+        <!-- <script src="js/service.js"></script> -->
         <!-- Controllers -->
-        <script src="js/controllers.js"></script>
-        <script src="js/ToDoCtrl.js"></script>
-        <script src="js/TaskCtrl.js"></script>
+        <!-- <script src="js/controllers.js"></script> -->
+        <script src="js/controller.js"></script>
     </body>
 </html>
 
